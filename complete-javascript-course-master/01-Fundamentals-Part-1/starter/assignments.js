@@ -43,3 +43,11 @@
 //   console.log(`John's BMI (${BMIMark}) is higher than Mark's (${BMIJohn})!`);
 // }
 
+//Coding Exercise 4: CHALLENGE #4
+const bill = 275;
+
+/* Write your code below. Good luck! 🙂 */
+
+const tip = bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+console.log(`The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`);

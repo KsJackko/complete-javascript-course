@@ -130,3 +130,62 @@
 
 // if (favourite !== 23) console.log('Why not 23?');
 
+// const day = 'Thursday';
+
+// switch (day) {
+//   case 'Monday': // day==='Monday'
+//     console.log('Plan course structure');
+//     console.log('Go to coding meetup');
+//     break;
+//   case 'Thusday':
+//     console.log('Prepare the code materials');
+//     break;
+//   case 'Wednesday':
+//   case 'Thursday':
+//     console.log('Play Monster Hunter World');
+//     break;
+//   case 'Friday':
+//     console.log('Happy Friday!');
+//     break;
+//   case 'Saturday':
+//     console.log('Happy weekend!');
+//     break;
+//   case 'Sunday':
+//     console.log('We should work tomorrow QwQ');
+//     break;
+//   default:
+//     console.log("Invaild input");
+// }
+
+// 27. Statements and Expressions
+// expression = produce a value
+// statment = vice versa
+
+// 3 + 4;
+// 1991;
+// true && false;
+
+// if (23 > 10) {
+//   const str = '23 is bigger';
+// }
+
+// const me = 'Jackko';
+// console.log(`I am ${20} years old and my name is ${me}.`);
+
+// ternary expression
+// const age = 20;
+// age >= 18 ? console.log('I like to drink wine') :
+//   console.log('I like to drink water');
+
+// const drink = age >= 18 ? 'wine' : 'water';
+// console.log(drink);
+
+// let drink2;
+// if (age >= 18) {
+//   drink2 = 'wine';
+// } else {
+//   drink2 = 'water';
+// }
+// console.log(drink2);
+
+// console.log(`I like to drink ${age >= 18 ? 'wine' : 'water'}`);

@@ -155,30 +155,104 @@
 // }
 
 //#43 Introducion to object
-const jackkoArray = [
-  'Jackko',
-  'Zhang',
-  2025 - 2004,
-  'Student',
-  ['Sunny', 'Andrew', 'Jacky']
-];
+// const jackkoArray = [
+//   'Jackko',
+//   'Zhang',
+//   2025 - 2004,
+//   'Student',
+//   ['Sunny', 'Andrew', 'Jacky']
+// ];
 
-console.log(jackkoArray);
+// console.log(jackkoArray);
 
+// const jackko = {
+//   firstName: 'Jackko',
+//   lastName: 'Zhang',
+//   age: 20,
+//   job: 'Student',
+//   friend: ['Sunny', 'Andrew', 'Jacky']
+// };
+
+// console.log(jackko);
+
+// console.log(jackko.firstName);
+// console.log(jackko.lastName);
+// console.log(jackko['lastName']);
+
+// const nameKey = 'Name';
+// console.log(jackko['last' + nameKey]);
+// console.log(jackko['first' + nameKey]);
+
+// const interestedIn = prompt('What do you want to know about Jackko? Choose between firstName, lastName, age, job, and friends');
+
+// console.log(jackko[interestedIn]);
+// if (jackko[interestedIn]) {
+//   console.log(jackko[interestedIn]);
+// } else {
+//   console.log('Wrong request! Choose between firstName, lastName, age, job, and friends')
+// }
+
+// jackko.location = 'Hong Kong';
+// jackko['instagram'] = 'jackko_ks';
+// console.log(jackko);
+
+// const jonas = {
+//   name: 'Jonas',
+//   friend: ['Michael', 'Jackko', 'Sunny']
+// };
+
+// console.log(`${jonas.name} has ${jonas.friend.length} friends, and his best friend is called ${jonas.friend[0]}`);
+
+//45#  Object Methods
 const jackko = {
   firstName: 'Jackko',
   lastName: 'Zhang',
-  age: 20,
+  birthYear: 2004,
   job: 'Student',
-  friend: ['Sunny', 'Andrew', 'Jacky']
+  friend: ['Sunny', 'Andrew', 'Jacky'],
+  hasDriversLicense: true,
+
+  // calcAge: function () {
+  //   console.log(this);
+  //   return 2025 - this.birthYear;
+  // }
+
+  calcAge: function () {
+    this.age = 2025 - this.birthYear
+    return this.age;
+  },
+
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old teacher, and he ${this.hasDriversLicense ? 'has' : 'doesn\'t have'} a driver's lience.`
+  }
 };
 
-console.log(jackko);
+console.log(jackko.calcAge());
 
-console.log(jackko.firstName);
-console.log(jackko.lastName);
-console.log(jackko['lastName']);
+console.log(jackko.getSummary());
 
-const nameKey = 'Name';
-console.log(jackko['last' + nameKey]);
-console.log(jackko['first' + nameKey]);
+const mark = {
+  fullName: 'Mark Miller',
+  mass: 78,
+  height: 1.69,
+
+  calcBMI: function () {
+    this.bmi = this.mass / (this.height * this.height)
+    return this.bmi;
+  }
+};
+
+const john = {
+  fullName: 'John Smith',
+  mass: 92,
+  height: 1.95,
+
+  calcBMI: function () {
+    this.bmi = this.mass / (this.height * this.height)
+    return this.bmi;
+  }
+};
+
+const markHigher = function () { mark.bmi > john.bmi ? true : false };
+
+console.log(`${markHigher ? mark.fullName : john.fullName}'s BMI (${markHigher ? mark.calcBMI() : john.calcBMI()}) is higher than ${!markHigher ? mark.fullName : john.fullName}'s (${!markHigher ? mark.calcBMI() : john.calcBMI()})!`);

@@ -65,3 +65,120 @@
 // }
 
 // console.log(fruitProcessor(5, 2));
+
+//38# function review
+// const calcAge = function (birthYear) {
+//   return 2025 - birthYear;
+// }
+
+// const calcAge4 = function (birthYear, firstName) {
+//   const age = calcAge(birthYear);
+//   const retirement = 65 - age;
+//   if (retirement > 0) {
+//     console.log(`${firstName} will retire in ${retirement} years.`)
+//     return retirement;
+//   } else {
+//     console.log(`${firstName} has already retired.`)
+//     return 9999;
+//   }
+//   // return `${firstName} will retire in ${retirement} years.`;
+// }
+
+// console.log(calcAge4(2004, 'Jackko'));
+// console.log(calcAge4(1980, 'Niki'));
+
+//40# introduction to arrary
+// const friend1 = 'Jackko'
+// const friend2 = 'Mary'
+// const friend3 = 'Coco'
+
+// const friend = ['Jackko', 'Mary', 'Coco'];
+// console.log(friend);
+
+// const year = new Array(2004, 2005, 2006);
+// console.log(year);
+
+// console.log(friend[1]);
+
+// console.log(friend.length);
+// console.log(friend[friend.length - 1]);
+
+// friend[2] = 'Billy'
+// console.log(friend[friend.length - 1]);
+
+// const jackko = ['Jackko', 'Zhang Ka Sing', 2004, friend];
+// console.log(jackko);
+
+// //Exercise
+// const calcAge = function (birthYear) {
+//   return 2025 - birthYear;
+// }
+
+// const years = [1990, 1997, 2004, 2025];
+
+// console.log(calcAge(years[0]));
+
+//41# arrary operation
+// const friends = ['Jackko', 'Mary', 'Coco'];
+
+// // Add element
+// const newlength = friends.push('Tom');
+// console.log(friends);
+// console.log(newlength);
+
+// friends.unshift('Jenny');
+// console.log(friends);
+
+// //Delete element
+// friends.pop(); //last
+// console.log(friends);
+// const popped = friends.pop();
+// console.log(popped);
+// console.log(friends);
+
+// friends.shift(); //first
+// console.log(friends);
+// const shifted = friends.shift();
+// console.log(shifted);
+// console.log(friends);
+
+// console.log(friends.indexOf('Jackko')); //Find the index of element
+// console.log(friends.indexOf('Mary'));
+// console.log(friends.indexOf('Nick'));
+
+// console.log(friends.includes('Jackko'));
+// friends.push('23');
+// console.log(friends.includes(23));
+
+// if (friends.includes('Jackko')) {
+//   console.log('You have a friend call Jackko')
+// }
+
+//#43 Introducion to object
+const jackkoArray = [
+  'Jackko',
+  'Zhang',
+  2025 - 2004,
+  'Student',
+  ['Sunny', 'Andrew', 'Jacky']
+];
+
+console.log(jackkoArray);
+
+const jackko = {
+  firstName: 'Jackko',
+  lastName: 'Zhang',
+  age: 20,
+  job: 'Student',
+  friend: ['Sunny', 'Andrew', 'Jacky']
+};
+
+console.log(jackko);
+
+console.log(jackko.firstName);
+console.log(jackko.lastName);
+console.log(jackko['lastName']);
+
+const nameKey = 'Name';
+console.log(jackko['last' + nameKey]);
+console.log(jackko['first' + nameKey]);

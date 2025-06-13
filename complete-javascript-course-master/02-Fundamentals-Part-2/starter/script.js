@@ -204,55 +204,155 @@
 // console.log(`${jonas.name} has ${jonas.friend.length} friends, and his best friend is called ${jonas.friend[0]}`);
 
 //45#  Object Methods
-const jackko = {
-  firstName: 'Jackko',
-  lastName: 'Zhang',
-  birthYear: 2004,
-  job: 'Student',
-  friend: ['Sunny', 'Andrew', 'Jacky'],
-  hasDriversLicense: true,
+// const jackko = {
+//   firstName: 'Jackko',
+//   lastName: 'Zhang',
+//   birthYear: 2004,
+//   job: 'Student',
+//   friend: ['Sunny', 'Andrew', 'Jacky'],
+//   hasDriversLicense: true,
 
-  // calcAge: function () {
-  //   console.log(this);
-  //   return 2025 - this.birthYear;
-  // }
+//   // calcAge: function () {
+//   //   console.log(this);
+//   //   return 2025 - this.birthYear;
+//   // }
 
-  calcAge: function () {
-    this.age = 2025 - this.birthYear
-    return this.age;
-  },
+//   calcAge: function () {
+//     this.age = 2025 - this.birthYear
+//     return this.age;
+//   },
 
-  getSummary: function () {
-    return `${this.firstName} is a ${this.calcAge()}-year old teacher, and he ${this.hasDriversLicense ? 'has' : 'doesn\'t have'} a driver's lience.`
-  }
-};
+//   getSummary: function () {
+//     return `${this.firstName} is a ${this.calcAge()}-year old teacher, and he ${this.hasDriversLicense ? 'has' : 'doesn\'t have'} a driver's lience.`
+//   }
+// };
 
-console.log(jackko.calcAge());
+// console.log(jackko.calcAge());
 
-console.log(jackko.getSummary());
+// console.log(jackko.getSummary());
 
-const mark = {
-  fullName: 'Mark Miller',
-  mass: 78,
-  height: 1.69,
+// const mark = {
+//   fullName: 'Mark Miller',
+//   mass: 78,
+//   height: 1.69,
 
-  calcBMI: function () {
-    this.bmi = this.mass / (this.height * this.height)
-    return this.bmi;
-  }
-};
+//   calcBMI: function () {
+//     this.bmi = this.mass / (this.height * this.height)
+//     return this.bmi;
+//   }
+// };
 
-const john = {
-  fullName: 'John Smith',
-  mass: 92,
-  height: 1.95,
+// // Coding Exercise 7: CHALLENGE #3
+// const john = {
+//   fullName: 'John Smith',
+//   mass: 92,
+//   height: 1.95,
 
-  calcBMI: function () {
-    this.bmi = this.mass / (this.height * this.height)
-    return this.bmi;
-  }
-};
+//   calcBMI: function () {
+//     this.bmi = this.mass / (this.height * this.height)
+//     return this.bmi;
+//   }
+// };
 
-const markHigher = function () { mark.bmi > john.bmi ? true : false };
+// const markHigher = function () { mark.bmi > john.bmi ? true : false };
 
-console.log(`${markHigher ? mark.fullName : john.fullName}'s BMI (${markHigher ? mark.calcBMI() : john.calcBMI()}) is higher than ${!markHigher ? mark.fullName : john.fullName}'s (${!markHigher ? mark.calcBMI() : john.calcBMI()})!`);
+// console.log(`${markHigher ? mark.fullName : john.fullName}'s BMI (${markHigher ? mark.calcBMI() : john.calcBMI()}) is higher than ${!markHigher ? mark.fullName : john.fullName}'s (${!markHigher ? mark.calcBMI() : john.calcBMI()})!`);
+
+//#48,49 Looping Arrays, Breaking and Continuing
+// const jackkoArray = [
+//   'Jackko',
+//   'Zhang',
+//   2025 - 2004,
+//   'Student',
+//   ['Sunny', 'Andrew', 'Jacky'],
+//   true
+// ];
+
+// const types = [];
+
+// for (let i = 0; i < jackkoArray.length; i++) {
+//   console.log(jackkoArray[i], typeof jackkoArray[i]);
+//   // types[i] = typeof jackkoArray[i];
+//   types.push(typeof jackkoArray[i]);
+// }
+
+// console.log(types);
+
+// const birthYear = [2004, 2003, 2002, 2001];
+// const ages = [];
+
+// for (let i = 0; i < birthYear.length; i++) {
+//   ages.push(2025 - birthYear[i]);
+// };
+
+// console.log(ages); 
+
+// Looping Backwards and Loops in Loops
+// const jonas = [
+//   'Jonas',
+//   'Schmedtmann',
+//   2037 - 1991,
+//   'teacher',
+//   ['Michael', 'Peter', 'Steven'],
+//   true
+// ];
+
+// // 0, 1, ..., 4
+// // 4, 3, ..., 0
+
+// for (let i = jonas.length - 1; i >= 0; i--) {
+//   console.log(i, jonas[i]);
+// }
+
+// for (let exercise = 1; exercise < 4; exercise++) {
+//   console.log(`-------- Starting exercise ${exercise}`);
+
+//   for (let rep = 1; rep < 6; rep++) {
+//     console.log(`Exercise ${exercise}: Lifting weight repetition ${rep} 🏋️‍♀️`);
+//   }
+// }
+
+//# while loop
+// for (let rep = 1; rep < 6; rep++) {
+//   console.log(`Lifting weight repetition ${rep} 🏋️‍♀️`);
+// };
+
+// let rep = 1;
+// while (rep <= 10) {
+//   console.log(`While. Lifting weight repetition ${rep} 🏋️‍♀️`);
+//   rep++;
+// }
+
+// let dice = Math.trunc(Math.random() * 6) + 1;
+// console.log(dice);
+
+// while (dice !== 6) {
+//   console.log(`You roll a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6) + 1;
+// }
+
+// const calcTip = function (bill) {
+//   return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+// }
+// //# coding challenge 5
+// /* Write your code below. Good luck! 🙂 */
+
+// const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+// const tips = [];
+// const totals = [];
+
+// const calcAverage = function (arr) {
+//   let sum = 0;
+//   for (let i = 0; i < arr.length; i++) {
+//     sum += arr[i];
+//   }
+//   return sum / arr.length;
+// };
+
+// for (let i = 0; i < bills.length; i++) {
+//   tips[i] = calcTip(bills[i]);
+//   totals[i] = tips[i] + bills[i];
+// };
+
+// console.log(bills, tips, totals);
+// console.log(calcAverage(totals));

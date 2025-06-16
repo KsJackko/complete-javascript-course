@@ -68,37 +68,91 @@
 // console.log(y === window.y);
 // console.log(z === window.z);
 
-console.log(this);
+// console.log(this);
 
-const calcAge = function (birthYear) {
-  console.log(2025 - birthYear);
-  console.log(this);
+// const calcAge = function (birthYear) {
+//   console.log(2025 - birthYear);
+//   console.log(this);
+// };
+
+// calcAge(2004);
+
+// const calcAgeArrow = birthYear => {
+//   console.log(2025 - birthYear);
+//   console.log(this);
+// };
+// calcAgeArrow(2004);
+
+// const jackko = {
+//   birthYear: 2004,
+//   firstName: 'Jackko',
+//   lastName: 'Zhang',
+//   calcAge: function () {
+//     console.log(this);
+//     const age = 2025 - this.birthYear;
+//     console.log(age);
+//   },
+// };
+
+// jackko.calcAge();
+
+// const mary = {
+//   birthYear: 2007,
+// };
+
+// mary.calcAge = jackko.calcAge;
+// mary.calcAge();
+
+// const f = mary.calcAge;
+// f();
+// var firstName = 'Sunny';
+
+// const jackko = {
+//   birthYear: 2004,
+//   firstName: 'Jackko',
+//   lastName: 'Zhang',
+//   calcAge: function () {
+//     console.log(this);
+//     const age = 2025 - this.birthYear;
+
+//     // Solution 1
+//     // const self = this;
+//     // const isMillenial = function () {
+//     //   console.log(self);
+//     //   console.log(self.year >= 1981 && self.year <= 1996);
+//     // };
+
+//     //Solution 2
+//     const isMillenial = () => {
+//       console.log(this);
+//       console.log(this.year >= 1981 && this.year <= 1996);
+//     };
+
+//     isMillenial();
+//   },
+
+//   greet: () => {
+//     console.log(this);
+//     console.log(`Hey ${this.firstName}`);
+//   },
+// };
+
+// jackko.greet();
+// console.log(this.firstName);
+// jackko.calcAge();
+
+// arguments keyword
+const addExpr = function (a, b) {
+  console.log(arguments);
+  return a + b;
 };
 
-calcAge(2004);
+addExpr(2, 5);
+addExpr(2, 5, 7, 9);
 
-const calcAgeArrow = birthYear => {
-  console.log(2025 - birthYear);
-  console.log(this);
-};
-calcAgeArrow(2004);
-
-const jackko = {
-  birthYear: 2004,
-  firstName: 'Jackko',
-  lastName: 'Zhang',
-  calcAge: function () {
-    console.log(this);
-    const age = 2025 - this.birthYear;
-    console.log(age);
-  },
+var addArrow = (a, b) => {
+  console.log(arguments);
+  return a + b;
 };
 
-jackko.calcAge();
-
-const mary = {
-  birthYear: 2007,
-};
-
-mary.calcAge = jackko.calcAge;
-mary.calcAge();
+addArrow(2, 9, 0);

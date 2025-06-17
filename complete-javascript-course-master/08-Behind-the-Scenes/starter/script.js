@@ -142,17 +142,52 @@
 // jackko.calcAge();
 
 // arguments keyword
-const addExpr = function (a, b) {
-  console.log(arguments);
-  return a + b;
+// const addExpr = function (a, b) {
+//   console.log(arguments);
+//   return a + b;
+// };
+
+// addExpr(2, 5);
+// addExpr(2, 5, 7, 9);
+
+// var addArrow = (a, b) => {
+//   console.log(arguments);
+//   return a + b;
+// };
+
+// addArrow(2, 9, 0);
+
+// const jessica1 = {
+//   firstName: 'Jessica',
+//   lastName: 'Zhang',
+// };
+
+// const marriedJessica = jessica1;
+// marriedJessica.lastName = 'Wu';
+
+// console.log(jessica1);
+// console.log(marriedJessica);
+
+const jessica = {
+  firstName: 'Jessica',
+  lastName: 'Zhang',
+  familiy: ['Abby', 'Kate'],
 };
 
-addExpr(2, 5);
-addExpr(2, 5, 7, 9);
+//shallow copy
+const copyJessica = { ...jessica };
+copyJessica.lastName = 'Davis';
 
-var addArrow = (a, b) => {
-  console.log(arguments);
-  return a + b;
-};
+// copyJessica.familiy.push('Jackko');
+// copyJessica.familiy.push('Mark');
 
-addArrow(2, 9, 0);
+// console.log(copyJessica.familiy);
+// console.log(jessica.familiy);
+
+//Deep copy/clone
+const jessicaClone = structuredClone(jessica);
+jessicaClone.familiy.push('Jackko');
+jessicaClone.familiy.push('Mark');
+
+console.log('Original:', jessica);
+console.log('clone:', jessicaClone);

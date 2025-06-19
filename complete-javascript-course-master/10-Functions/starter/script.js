@@ -68,6 +68,64 @@ const cathay = {
     console.log(
       `${name} books a seat on ${this.airline} flight ${flightNum} ${this.iatacode}`
     );
+    this.booking.push({
+      flight: `${this.iatacode}${flightNum}`,
+      name,
+    });
   },
 };
 cathay.book('0987654321', 'Jackko');
+console.log(cathay);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iatacode: 'EW',
+  booking: [],
+};
+
+const book = cathay.book;
+// does not work
+// book(234, 'Jacky');
+book.call(eurowings, 234, 'Sunny Lai');
+console.log(eurowings);
+
+book.call(cathay, 456, 'Andrew');
+console.log(cathay);
+
+const swiss = {
+  airline: 'Swiss',
+  iatacode: 'LX',
+  booking: [],
+};
+book.call(swiss, 456, 'Andrew');
+
+// Apply method
+const flightData = [596, 'Jenny Li'];
+book.apply(swiss, flightData);
+console.log(swiss);
+
+book.call(swiss, ...flightData);
+
+//#141 The call and apply method
+// bind method
+// book.call(eurowings, 234, 'Sunny Lai');
+
+const bookEW = book.bind(eurowings);
+const bookHKG = book.bind(cathay);
+const bookLX = book.bind(swiss);
+
+bookEW(23, 'Peter Wong');
+console.log(eurowings);
+
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Nokk Tsuang');
+
+//with Event Listeners
+cathay.planes = 300;
+cathay.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+
+document.querySelector('.buy').addEventListener('click', cathay.buyPlane);

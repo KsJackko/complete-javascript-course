@@ -21,6 +21,18 @@ const mexicanFoods = new Set([
   'avocado',
   'garlic',
 ]);
+//Set 2
+// const commonfoods = italianFoods.intersection(mexicanFoods);
+// console.log(commonfoods);
+
+// const italianMexicanFusion = mexicanFoods.union(italianFoods);
+// console.log(italianMexicanFusion);
+
+// console.log(new Set([...italianFoods, ...italianFoods]));
+// console.log(...italianMexicanFusion);
+
+// const uniqueItalianFoods = italianFoods.difference(mexicanFoods);
+// console.log('Difference italian:', uniqueItalianFoods);
 
 const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 
@@ -68,6 +80,203 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+// #129 Working with string part 3
+// split and join
+// console.log('a+very+nice+string'.split('+'));
+// console.log('Jackko Zhang'.split(' '));
+
+// const [firstName, lastName] = 'Jackko Zhang'.split(' ');
+// const newName = ['Mr.', firstName, lastName.toUpperCase()].join(' ');
+// console.log(newName);
+
+// const passenger = 'jackko zhang';
+// const capitalizeName = function (name) {
+//   const splitName = name.split(' ');
+//   const joinName = [];
+//   for (const x of splitName) {
+//     // joinName.push(x[0].toUpperCase() + x.slice(1));
+//     joinName.push(x.replace(x[0], x[0].toUpperCase()));
+//   }
+//   console.log(joinName.join(' '));
+// };
+// capitalizeName(passenger);
+// // Padding
+// const message = 'Go to gate 23';
+// console.log(message.padStart(25, '+').padEnd(36, '+'));
+// console.log('Jackko'.padStart(23, '+').padEnd(40, '+'));
+
+// const maskCreditCard = function (number) {
+//   const str = number + '';
+//   console.log(str.slice(-4).padStart(str.length, '*'));
+// };
+// maskCreditCard(1234567890);
+// maskCreditCard('auaiobeubfbauf');
+
+// //repeat
+// const message2 = 'Bad waether... All Departues Delayed...';
+// console.log(message2.repeat(5));
+
+// const planesInLine = function (n) {
+//   console.log(`There are ${n} planes in line ${'飞机'.repeat(n)}.`);
+// };
+// planesInLine(5);
+// // #129 Working with string part 2
+// const passenger = 'jaCkKO';
+// const passengerLower = passenger.toLowerCase();
+// console.log(passengerLower);
+// const passengerCorrect =
+//   passengerLower[0].toUpperCase() + passengerLower.slice(1);
+// console.log(passengerCorrect);
+
+// const email = 'jackkozhang@gmail.com';
+// const loginEmail = ' JAckkozhang@gmail.com  \n';
+// // const lowerEmail = loginEmail.toLowerCase();
+// // const emailCorrect = lowerEmail.trim();
+// // console.log(emailCorrect);
+// const normalizaedEmail = loginEmail.toLowerCase().trim();
+// console.log(normalizaedEmail);
+
+// //replacing
+// const priceHKD = '29999HKD';
+// const priceUS = priceHKD.replace('HKD', '$');
+// console.log(priceUS);
+
+// const announcement =
+//   'All passengers come to boarding door 23. Boarding door 23!';
+// console.log(announcement.replace('door', 'gate').replace('door', 'gate'));
+// console.log(announcement.replaceAll('door', 'gate'));
+
+// console.log(announcement.replaceAll(/door/g, 'gate'));
+
+// //Booleans
+// const plane = 'A320neo';
+// console.log(plane.includes('A320'));
+// console.log(plane.includes('Boeing'));
+// console.log(plane.startsWith('Airb'));
+
+// const plane2 = 'Airbus A320neo';
+// if (plane2.startsWith('Airbus') && plane.endsWith('neo')) {
+//   console.log('Part of the New airbus familiy');
+// }
+
+// const checkBaggage = function (items) {
+//   const baggage = items.toLowerCase();
+//   if (baggage.includes('gun') || baggage.includes('Knife')) {
+//     console.log('You are NOT allowed on board.');
+//   } else {
+//     console.log('Welcome aboard');
+//   }
+// };
+// checkBaggage('I have a laptop, some Food and a pocket Knife');
+// checkBaggage('Socks and camera');
+// checkBaggage('Got some snacks and a gun for protection');
+// #128 Working with string part 1
+// const airline = 'HK International Airport';
+// const plane = 'a320';
+
+// console.log(plane[0]);
+// console.log(plane[1]);
+// console.log(plane[2]);
+// console.log('B737'[0]);
+
+// console.log(airline.length);
+// console.log('B737'.length);
+
+// console.log(airline.indexOf('K'));
+// console.log(airline.lastIndexOf('r'));
+// console.log(airline.indexOf('r'));
+// console.log(airline.indexOf('Airport'));
+
+// console.log(airline.slice(3));
+// console.log(airline.slice(3, 16));
+
+// console.log(airline.slice(0, airline.indexOf(' ')));
+// console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+
+// console.log(airline.slice(-7));
+// console.log(airline.slice(1, -1));
+
+// const checkMiddleSeat = function (seat) {
+//   //B and E are middle seat
+//   const s = seat.slice(-1);
+//   if (s === 'B' || s === 'E') console.log('You got the middle seat');
+//   else console.log('You got lucky');
+// };
+
+// checkMiddleSeat('11B');
+// Maps: iteration
+// const question = new Map([
+//   ['question', 'What is the best programming language in the world?'],
+//   [1, 'C'],
+//   [2, 'Java'],
+//   [3, 'JavaScript'],
+//   ['correct', 3],
+//   [true, 'Correct!'],
+//   [false, 'Try again'],
+// ]);
+
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
+
+// console.log(question.get('question'));
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') console.log(`Answer ${key}: ${value}`);
+// }
+
+// const answer = Number(prompt('Your answer'));
+// console.log(answer);
+// console.log(question.get(question.get('correct') === answer));
+// #Map: fundamentals
+// const rest = new Map();
+// rest.set('name', 'Jackko Zhang');
+// rest.set(1, 'Firenze, Italy');
+// console.log(rest.set(2, 'Lisbon,Portugal'));
+
+// rest
+//   .set('categories', ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'])
+//   .set('open', 11)
+//   .set('close', 23)
+//   .set(true, 'We are open :D')
+//   .set(false, 'We are closed :(');
+// const time = 8;
+// console.log(rest.get(time >= rest.get('open') && time <= rest.get('close')));
+
+// console.log(rest.has('categories'));
+// rest.delete(2);
+// const arr = [1, 2];
+// rest.set(arr, 'Test');
+
+// rest.set(document.querySelector('h1'), 'Heading');
+// console.log(rest.get(document.querySelector('h1')));
+
+// console.log(rest.get(arr));
+//Set
+// const orderSet = new Set([
+//   'Pasta',
+//   'Pizza',
+//   'Pizza',
+//   'Risotto',
+//   'Pasta',
+//   'Pizza',
+// ]);
+// console.log(orderSet);
+// console.log(new Set('Jackko'));
+// console.log(orderSet.size);
+// console.log(orderSet.has('Pizza'));
+// console.log(orderSet.has('Pasta'));
+// orderSet.add('Garlic bread');
+// orderSet.delete('Pizza');
+// console.log(orderSet);
+
+// for (const food of orderSet) console.log(food);
+
+// const staffList = ['chef', 'waiter', 'manager', 'waiter', 'ceo'];
+// const staffType = [...new Set(staffList)];
+// for (const staff of staffType) console.log(staff);
+
+// console.log(new Set(['chef', 'waiter', 'manager', 'waiter', 'ceo']).size);
+// console.log(new Set('Jackko').size);
 
 // #Looping Object, values, entries
 // console.log(Object.keys(openingHours));
@@ -132,46 +341,140 @@ const restaurant = {
 // for (const [i, el] of menu.entries()) {
 //   console.log(`${i + 1}: ${el}`);
 // }
-const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
-  players: [
-    [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
-    ],
-    [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
-    ],
-  ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
+// const game = {
+//   team1: 'Bayern Munich',
+//   team2: 'Borrussia Dortmund',
+//   players: [
+//     [
+//       'Neuer',
+//       'Pavard',
+//       'Martinez',
+//       'Alaba',
+//       'Davies',
+//       'Kimmich',
+//       'Goretzka',
+//       'Coman',
+//       'Muller',
+//       'Gnarby',
+//       'Lewandowski',
+//     ],
+//     [
+//       'Burki',
+//       'Schulz',
+//       'Hummels',
+//       'Akanji',
+//       'Hakimi',
+//       'Weigl',
+//       'Witsel',
+//       'Hazard',
+//       'Brandt',
+//       'Sancho',
+//       'Gotze',
+//     ],
+//   ],
+//   score: '4:0',
+//   scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+//   date: 'Nov 9th, 2037',
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+///////////////////////////////////////
+// Coding Challenge #4
+
+// Write a program that receives a list of variable names written in underscore_case and convert them to camelCase.
+
+// The input will come from a textarea inserted into the DOM (see code below), and conversion will happen when the button is pressed.
+
+// THIS TEST DATA (pasted to textarea)
+// underscore_case
+//  first_name
+// Some_Variable
+//   calculate_AGE
+// delayed_departure
+
+// SHOULD PRODUCE THIS OUTPUT (5 separate console.log outputs)
+// underscoreCase      ✅
+// firstName           ✅✅
+// someVariable        ✅✅✅
+// calculateAge        ✅✅✅✅
+// delayedDeparture    ✅✅✅✅✅
+
+// HINT 1: Remember which character defines a new line in the textarea 😉
+// HINT 2: The solution only needs to work for a variable made out of 2 words, like a_b
+// HINT 3: Start without worrying about the ✅. Tackle that only after you have the variable name conversion working 😉
+// HINT 4: This challenge is difficult on purpose, so start watching the solution in case you're stuck. Then pause and continue!
+
+// Afterwards, test with your own test data!
+
+// GOOD LUCK 😀
+// */
+
+// document.body.append(document.createElement('textarea'));
+// document.body.append(document.createElement('button'));
+
+// document.querySelector('button').addEventListener('click', function () {
+//   let order = 1;
+//   const variable = document.querySelector('textarea').value;
+//   const arr = variable.split('\n');
+//   for (const rowVariable of arr) {
+//     const [left, right] = rowVariable.trim().toLowerCase().split('_');
+//     const finalVariable = left + right[0].toUpperCase() + right.slice(1);
+//     console.log(finalVariable.padEnd(20, ' ') + '✅'.repeat(order));
+//     order++;
+//   }
+// });
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
+
+1. Create an array 'events' of the different game events that happened (no duplicates)
+2. After the game has finished, is was found that the yellow card from minute 64 was unfair. So remove this event from the game events log.
+3. Print the following string to the console: "An event happened, on average, every 9 minutes" (keep in mind that a game has 90 minutes)
+4. Loop over the events and log them to the console, marking whether it's in the first half or second half (after 45 min) of the game, like this:
+      [FIRST HALF] 17: ⚽️ GOAL
+
+GOOD LUCK 😀
+*/
+
+// const gameEvents = new Map([
+//   [17, '⚽️ GOAL'],
+//   [36, '🔁 Substitution'],
+//   [47, '⚽️ GOAL'],
+//   [61, '🔁 Substitution'],
+//   [64, '🔶 Yellow card'],
+//   [69, '🔴 Red card'],
+//   [70, '🔁 Substitution'],
+//   [72, '🔁 Substitution'],
+//   [76, '⚽️ GOAL'],
+//   [80, '⚽️ GOAL'],
+//   [92, '🔶 Yellow card'],
+// ]);
+// //1.
+// const arr = [...gameEvents.values()];
+// console.log(arr);
+// const events = new Set(arr);
+// console.log(events);
+
+// //2.
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+// //3.
+// console.log(
+//   `An event happened, on average, every ${90 / gameEvents.size} minutes`
+// );
+// //4.
+// for (const [time, event] of gameEvents) {
+//   time <= 45
+//     ? console.log(`[FIRST HALF], ${time}: ${event}`)
+//     : console.log(`[SECOND HALF], ${time}: ${event}`);
+// }
+
 ///////////////////////////////////////
 // Coding Challenge #2
 
@@ -196,29 +499,29 @@ BONUS: Create an object called 'scorers' which contains the names of the players
 GOOD LUCK 😀
 */
 //1.
-const entries = Object.entries(game.scored);
-for (const [goal, player] of entries) {
-  console.log(`Goal ${goal}: ${player}`);
-}
-//2.
-const values = Object.values(game.odds);
-let avg = 0;
-for (const x of values) {
-  avg += x / values.length;
-}
-console.log(avg);
-//3.
-const odds = Object.entries(game.odds);
-for (const [team, odd] of odds) {
-  const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
-  console.log(`Odd of ${teamStr} ${odd}`);
-}
-
-const scorers = {};
-for (const player of game.scored) {
-  scorers[player] === 1 ? scorers[player]++ : (scorers[player] = 1);
-}
-console.log(scorers);
+// const entries = Object.entries(game.scored);
+// for (const [goal, player] of entries) {
+//   console.log(`Goal ${goal}: ${player}`);
+// }
+// //2.
+// const values = Object.values(game.odds);
+// let avg = 0;
+// for (const x of values) {
+//   avg += x / values.length;
+// }
+// console.log(avg);
+// //3.
+// const odds = Object.entries(game.odds);
+// for (const [team, odd] of odds) {
+//   const teamStr = team === 'x' ? 'draw' : `victory ${game[team]}`;
+//   console.log(`Odd of ${teamStr} ${odd}`);
+// }
+//  //bonus
+// const scorers = {};
+// for (const player of game.scored) {
+//   scorers[player] === 1 ? scorers[player]++ : (scorers[player] = 1);
+// }
+// console.log(scorers);
 // for (const [team, odd] of odds) {
 //   team !== 'x'
 //     ? console.log(`Odd of victory ${game[team]} ${odd}`)

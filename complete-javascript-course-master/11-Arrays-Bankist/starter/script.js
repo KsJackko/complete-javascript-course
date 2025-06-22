@@ -113,6 +113,7 @@ const createUsername = function (account) {
 };
 createUsername(accounts);
 
+// Login in button
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
   const username = inputLoginUsername.value;

@@ -61,10 +61,12 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayMovement = function (movements) {
+let currentAccount;
+
+const displayMovement = function (account) {
   containerMovements.innerHTML = '';
 
-  movements.forEach((mov, i) => {
+  account.movements.forEach((mov, i) => {
     const type = mov < 0 ? 'withdrawal' : 'deposit';
     const html = `
        <div class="movements__row">
@@ -77,13 +79,66 @@ const displayMovement = function (movements) {
   });
 };
 
-displayMovement(account1.movements);
+const calcPrintBalance = function (account) {
+  const balance = account.movements.reduce((acc, cur) => acc + cur, 0);
+  labelBalance.textContent = balance + ' EUR';
+};
+
+const calcDisplaySummary = function (account) {
+  const income = account.movements
+    .filter(mov => mov > 0)
+    .reduce((arr, mov) => arr + mov);
+  labelSumIn.textContent = `${income}€`;
+  const outcome = account.movements
+    .filter(mov => mov < 0)
+    .reduce((arr, mov) => arr + mov);
+  labelSumOut.textContent = `${Math.abs(outcome)}€`;
+  const interest = account.movements
+    .filter(mov => mov > 0)
+    .map(deposit => deposit * (account.interestRate / 100))
+    .filter(int => int >= 1)
+    .reduce((acc, cur) => acc + cur, 0);
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+// Map method, create username
+const createUsername = function (account) {
+  account.forEach(function (each) {
+    each.username = each.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+createUsername(accounts);
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  const username = inputLoginUsername.value;
+  const pin = Number(inputLoginPin.value);
+  // finding account
+  currentAccount = accounts.find(acc => acc.username === username);
+  // correct credentials
+  if (currentAccount?.pin === pin) {
+    // display UI and message
+    labelWelcome.textContent = `Welcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    containerApp.style.opacity = 1;
+    // display balance
+    calcPrintBalance(currentAccount);
+    // display movement
+    displayMovement(currentAccount);
+    // display summary
+    calcDisplaySummary(currentAccount);
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 // let arr = ['a', 'b', 'c', 'd', 'e'];
 
@@ -181,16 +236,161 @@ TEST DATA 2: Julia's data [9, 16, 6, 8, 3], Kate's data [10, 5, 6, 1, 4]
 
 GOOD LUCK 😀
 */
-const checkDogs = function (dogsJulia, dogsKate) {
-  const output = function (dog, i) {
-    const type = dog >= 3 ? 'adult' : 'puppy';
-    type === 'adult'
-      ? console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`)
-      : console.log(`Dog number ${i + 1} is still a puppy 🐶`);
-  };
-  const newdogsJulia = dogsJulia.slice(1, -2);
-  newdogsJulia.forEach(output);
-  console.log('---');
-  dogsKate.forEach(output);
-};
-checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// const checkDogs = function (dogsJulia, dogsKate) {
+//   const output = function (dog, i) {
+//     const type = dog >= 3 ? 'adult' : 'puppy';
+//     type === 'adult'
+//       ? console.log(`Dog number ${i + 1} is an adult, and is ${dog} years old`)
+//       : console.log(`Dog number ${i + 1} is still a puppy 🐶`);
+//   };
+//   dogsJulia.splice(0, 1);
+//   dogsJulia.splice(-2, 2);
+//   dogsJulia.forEach(output);
+//   console.log('---');
+//   dogsKate.forEach(output);
+// };
+// checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+
+// #158 Map method
+// const hkdToJpy = 18.61;
+// const movementJpy = movements.map(function (mov) {
+//   return mov * hkdToJpy;
+// });
+// const movementJpy = movements.map(mov => mov * hkdToJpy);
+// console.log(movementJpy);
+
+// const movementJpyFor = [];
+// for (const each of movements) movementJpyFor.push(each * hkdToJpy);
+// console.log(movementJpyFor);
+
+// const movementDescriptions = movements.map((mov, i) => {
+//   return `Movement${i}, You ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(
+//     mov
+//   )}`;
+// });
+
+// console.log(movementDescriptions);
+
+// 159 filter method
+// const deposit = movements.filter(mov => {
+//   return mov > 0;
+// });
+// console.log(movements);
+// console.log(deposit);
+
+// const withdrawals = movements.filter(mov => mov < 0);
+// console.log(withdrawals);
+
+// //Reduce method
+// const balance = movements.reduce((acc, cur, i) => acc + cur, 0);
+// console.log(balance);
+
+// //Maximum value
+// const max = movements.reduce((acc, mov) => {
+//   if (acc < mov) return mov;
+//   else return acc;
+// }, movements[0]);
+// console.log(max);
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to human ages and calculate the average age of the dogs in their study.
+
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does the following things in order:
+
+1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old, humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4.
+2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are at least 18 years old)
+3. Calculate the average human age of all adult dogs (you should already know from other challenges how we calculate averages 😉)
+4. Run the function for both test datasets
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+
+// const calcAverageHumanAge = function (ages) {
+//   const dogAge = ages.map(age => {
+//     if (age <= 2) return 2 * age;
+//     else if (age > 2) return 16 + age * 4;
+//   });
+//   console.log(dogAge);
+//   const adultDogs = dogAge.filter(age => age >= 18);
+//   console.log(adultDogs);
+//   const avgDogsAge = adultDogs.reduce(
+//     (acc, cur, i, arr) => acc + cur / arr.length,
+//     0
+//   );
+//   console.log(avgDogsAge);
+// };
+
+// calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+// const eurToUsd = 1.1;
+
+// // PIPELINE
+// const totalDepositsUSD = movements
+//   .filter(mov => mov > 0)
+//   .map((mov, i, arr) => {
+//     // console.log(arr);
+//     return mov * eurToUsd;
+//   })
+//   .reduce((acc, mov) => acc + mov, 0);
+// console.log(totalDepositsUSD);
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+Rewrite the 'calcAverageHumanAge' function from the previous challenge, but this time as an arrow function, and using chaining!
+
+TEST DATA 1: [5, 2, 4, 1, 15, 8, 3]
+TEST DATA 2: [16, 6, 10, 5, 6, 1, 4]
+
+GOOD LUCK 😀
+*/
+
+// const calcAverageHumanAge = function (ages) {
+//   const dogAge = ages.map(age => {
+//     if (age <= 2) return 2 * age;
+//     else if (age > 2) return 16 + age * 4;
+//   });
+//   console.log(dogAge);
+//   const adultDogs = dogAge.filter(age => age >= 18);
+//   console.log(adultDogs);
+//   const avgDogsAge = adultDogs.reduce(
+//     (acc, cur, i, arr) => acc + cur / arr.length,
+//     0
+//   );
+//   console.log(avgDogsAge);
+// };
+
+// const calcAverageHumanAge = ages =>
+//   ages
+//     .map(age => {
+//       if (age <= 2) return 2 * age;
+//       else if (age > 2) return 16 + age * 4;
+//     })
+//     .filter(age => age >= 18)
+//     .reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+
+// const avg = calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+// console.log(avg);
+
+// Find method: find method only return the first element of the condition, not return an array.
+// const firstWithdrawal = movements.find(mov => mov < 0);
+// console.log(movements);
+// console.log(firstWithdrawal);
+
+// console.log(accounts);
+// const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+// console.log(account);
+// const findAccount = function (accounts) {
+//   for (const account of accounts)
+//     if (account.owner === 'Jessica Davis') return account;
+// };
+
+// console.log(findAccount(accounts));

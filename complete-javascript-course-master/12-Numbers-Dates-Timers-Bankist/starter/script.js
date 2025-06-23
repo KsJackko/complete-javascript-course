@@ -223,7 +223,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -251,3 +251,20 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+console.log(23 === 23.0);
+
+// Base 10 - 0 to 9
+// Binary base 2 - 0 to 1
+
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 === 0.3);
+
+//Conversion
+console.log(Number('23'));
+console.log(+'23');
+
+//Parsing
+console.log(Number.parseInt('30px', 10));
+console.log(Number.parse);
+
+console.log(Number.isInteger(23.5));

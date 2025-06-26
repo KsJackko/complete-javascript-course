@@ -173,6 +173,7 @@ account.type = function () {
 };
 */
 
+/*
 const PersonProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -195,6 +196,7 @@ console.log(steven.__proto__ === PersonProto);
 const sarah = Object.create(PersonProto);
 sarah.init('Sarah', 1979);
 sarah.calcAge();
+*/
 
 ///////////////////////////////////////
 // Coding Challenge #2
@@ -249,6 +251,7 @@ ford.speedUS = 50;
 console.log(ford);
 */
 
+/*
 const Person = function (firstName, birthYear) {
   this.firstName = firstName;
   this.birthYear = birthYear;
@@ -275,3 +278,195 @@ jackko.introduce();
 console.dir(jackko.__proto__);
 console.dir(jackko.__proto__.__proto__);
 // jackko.calcAge();
+*/
+
+///////////////////////////////////////
+// Coding Challenge #3
+
+/* 
+1. Use a constructor function to implement an Electric Car (called EV) as a CHILD "class" of Car. Besides a make and current speed, the EV also has the current battery charge in % ('charge' property);
+2. Implement a 'chargeBattery' method which takes an argument 'chargeTo' and sets the battery charge to 'chargeTo';
+3. Implement an 'accelerate' method that will increase the car's speed by 20, and decrease the charge by 1%. Then log a message like this: 'Tesla going at 140 km/h, with a charge of 22%';
+4. Create an electric car object and experiment with calling 'accelerate', 'brake' and 'chargeBattery' (charge to 90%). Notice what happens when you 'accelerate'! HINT: Review the definiton of polymorphism 😉
+
+DATA CAR 1: 'Tesla' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+
+/*
+const Car = function (make, speed) {
+  this.make = make;
+  this.speed = speed;
+};
+
+Car.prototype.accelerate = function () {
+  this.speed += 10;
+  console.log(this.speed);
+};
+
+Car.prototype.brake = function () {
+  this.speed -= 5;
+  console.log(this.speed);
+};
+
+const Ev = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
+
+Ev.prototype = Object.create(Car.prototype);
+
+Ev.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+
+Ev.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge -= 1;
+  console.log(
+    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+  );
+};
+
+const tesla = new Ev('Tesla', 120, 23);
+
+console.log(tesla);
+
+tesla.accelerate();
+*/
+
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+
+  // Instance methods
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  }
+
+  greet() {
+    console.log(`Hey ${this.fullName}`);
+  }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  // Static method
+  static hey() {
+    console.log('Hey there 👋');
+  }
+}
+
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // Always needs to happen first
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  calcAge() {
+    console.log(
+      `I'm ${
+        2025 - this.birthYear
+      } years old, but as a student I feel more like ${
+        2025 - this.birthYear + 10
+      }`
+    );
+  }
+}
+///////////////////////////////////////
+// Inheritance Between "Classes": Object.create
+/*
+const yuki = new StudentCl('Yuki Zhang', 2010, 'Computer Science');
+yuki.introduce();
+yuki.calcAge();
+console.log(yuki);
+
+const PersonProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(PersonProto);
+
+const StudentProto = Object.create(PersonProto);
+
+StudentProto.init = function (firstName, birthYear, course) {
+  PersonProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.fullName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+
+jay.init('Jay', 2004, 'Computer Science');
+jay.introduce();
+console.log(jay);
+*/
+
+class Account {
+  locale = navigator.language;
+  #movement = [];
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+
+  // Public interface
+  deposit(val) {
+    this.#movement.push(val);
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+  }
+
+  approveLoan() {
+    return true;
+  }
+
+  requestLoan(val) {
+    if (this.approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved`);
+    }
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111);
+
+acc1.deposit(250);
+acc1.withdraw(250);
+acc1.requestLoan(1000);
+
+console.log(acc1);

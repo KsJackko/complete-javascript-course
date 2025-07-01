@@ -147,6 +147,7 @@ btn.addEventListener('click', function () {
 getCountryData('bbct');
 */
 
+/*
 const renderCountry = function (data, className = '') {
   const html = `
   <article class="country ${className}">
@@ -198,9 +199,11 @@ const getCountryData = function (country) {
       countriesContainer.style.opacity = 1;
     });
 };
-btn.addEventListener('click', function () {
-  getCountryData('usa');
-});
+*/
+
+// btn.addEventListener('click', function () {
+//   getCountryData('usa');
+// });
 
 // getCountryData('bbct');
 
@@ -230,6 +233,8 @@ TEST COORDINATES 2: -33.933, 18.474
 
 GOOD LUCK 😀
 */
+
+/*
 const getJSON2 = function (url, errorMsg) {
   return fetch(url).then(response => {
     if (!response.ok) throw new Error(`${errorMsg}${response.status}`);
@@ -252,3 +257,184 @@ const whereAmI = function (lat, lng) {
 };
 
 whereAmI(19.037, 72.873);
+*/
+
+/*
+console.log('Test start');
+setTimeout(() => console.log('0 sec timer'), 0);
+Promise.resolve('Resolved promise 1').then(res => console.log(res));
+Promise.resolve('Resolved promise 2').then(res => {
+  for (let i = 0; i < 100000000; i++) {}
+  console.log(res);
+});
+console.log('Test end');
+*/
+
+/*
+const lotteryPromise = new Promise(function (resolve, reject) {
+  console.log('Lotter draw is happening');
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      resolve('You WIN!');
+    } else {
+      reject(new Error('You lost your money!'));
+    }
+  }, 2000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+//Promisifing setTimeout
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+wait(2)
+  .then(() => {
+    console.log('I waited for 2 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 3 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 4 seconds');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('I waited for 5 seconds');
+    return wait(1);
+  });
+
+Promise.resolve('You WIN!').then(x => console.log(x));
+Promise.reject('You LOSE!').catch(x => console.error(x));
+*/
+
+// navigator.geolocation.getCurrentPosition(
+//   position => console.log(position),
+//   err => console.error(err)
+// );
+/*
+console.log('Getting position');
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+getPosition().then(pos => console.log(pos));
+*/
+
+/*
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+getPosition().then(pos => console.log(pos));
+
+const getJSON2 = function (url, errorMsg) {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(`${errorMsg}${response.status}`);
+    console.log(response);
+    return response.json();
+  });
+};
+const whereAmI = function () {
+  getPosition()
+    .then(pos => {
+      const { lat, lng } = pos.coords;
+      return getJSON2(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`,
+        'Problem of geocoding'
+      );
+    })
+    .then(data => {
+      if (!data.countryName)
+        throw new Error('No country found for these coordinates!');
+      console.log(`You are in ${data.city}, ${data.countryName}.`);
+      return getCountryData(data.countryName);
+    })
+    .catch(err => console.log(`Something went wrong!(${err}), try again!`));
+};
+
+btn.addEventListener('click', whereAmI);
+*/
+
+///////////////////////////////////////
+// Coding Challenge #2
+
+/* 
+Build the image loading functionality that I just showed you on the screen.
+
+Tasks are not super-descriptive this time, so that you can figure out some stuff on your own. Pretend you're working on your own 😉
+
+PART 1
+1. Create a function 'createImage' which receives imgPath as an input. This function returns a promise which creates a new image (use document.createElement('img')) and sets the .src attribute to the provided image path. When the image is done loading, append it to the DOM element with the 'images' class, and resolve the promise. The fulfilled value should be the image element itself. In case there is an error loading the image ('error' event), reject the promise.
+
+If this part is too tricky for you, just watch the first part of the solution.
+
+PART 2
+2. Comsume the promise using .then and also add an error handler;
+3. After the image has loaded, pause execution for 2 seconds using the wait function we created earlier;
+4. After the 2 seconds have passed, hide the current image (set display to 'none'), and load a second image (HINT: Use the image element returned by the createImage promise to hide the current image. You will need a global variable for that 😉);
+5. After the second image has loaded, pause execution for 2 seconds again;
+6. After the 2 seconds have passed, hide the current image.
+
+TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast.
+
+GOOD LUCK 😀
+*/
+let currentImg;
+
+const wait = function (seconds) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, seconds * 1000);
+  });
+};
+
+const createImage = function (imgPath) {
+  return new Promise(function (resolve, reject) {
+    const imgEl = document.createElement('img');
+    imgEl.src = imgPath;
+    imgEl.addEventListener('load', function () {
+      document.querySelector('.images').appendChild(imgEl);
+      resolve(imgEl);
+    });
+    imgEl.addEventListener('error', function () {
+      reject(new Error('Image loading failed'));
+    });
+  });
+};
+
+createImage('./img/img-1.jpg')
+  .then(imgEl => {
+    currentImg = imgEl;
+    console.log('Image1 successfully loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+    return createImage('./img/img-2.jpg');
+  })
+  .then(imgEl => {
+    currentImg = imgEl;
+    console.log('Image2 successfully loaded');
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = 'none';
+  })
+  .catch(err => console.error(err));

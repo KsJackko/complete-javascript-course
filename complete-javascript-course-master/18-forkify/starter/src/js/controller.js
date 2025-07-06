@@ -4,10 +4,8 @@ import * as model from './model';
 import recipeView from './views/recipeView';
 import searchView from './views/searchView';
 import resultsView from './views/resultsView';
+import paginationView from './views/paginationView';
 
-if (module.hot) {
-  module.hot.accept();
-}
 //Show recipe by id
 const controlRecipe = async function () {
   try {

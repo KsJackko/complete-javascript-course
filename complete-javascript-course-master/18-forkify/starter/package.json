@@ -4,13 +4,15 @@
   "description": "Recipe application",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist --no-optimize"
   },
   "author": "Jackko Zhang",
   "license": "ISC",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.15.4",
-    "parcel": "^2.15.4"
+    "@parcel/transformer-svg-react": "^2.15.4",
+    "parcel": "^2.15.4",
+    "svgo": "^3.3.2"
   },
   "dependencies": {
     "core-js": "^3.43.0",
